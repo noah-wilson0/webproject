@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
+  <display-name>term-project</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <param-name>jdbc.driverClassName</param-name>
+    <param-value>org.h2.Driver</param-value>
+  </context-param>
+  <context-param>
+    <param-name>jdbc.url</param-name>
+    <param-value>jdbc:h2:tcp://localhost/~/wp/wpdb</param-value>
+  </context-param>
+  <context-param>
+    <param-name>jdbc.username</param-name>
+    <param-value>sa</param-value>
+  </context-param>
+  <context-param>
+    <param-name>jdbc.password</param-name>
+    <param-value></param-value>
+  </context-param>
+  <resource-ref>
+    <description>DBCP Resource</description>
+    <res-ref-name>jdbc/h2_db</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+  <context-param>
+    <param-name>dbcp_resource_name</param-name>
+    <param-value>jdbc/h2_db</param-value>
+  </context-param>
+  <servlet>
+    <description></description>
+    <display-name>MyServletContextListener</display-name>
+    <servlet-name>MyServletContextListener</servlet-name>
+    <servlet-class>com.wplab.service.MyServletContextListener</servlet-class>
+  </servlet>
+
+
+</web-app>
