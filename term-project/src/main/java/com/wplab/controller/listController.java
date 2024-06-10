@@ -39,7 +39,14 @@ public class listController extends HttpServlet {
 		List<BoardDO> list = null;
 		
 		HttpSession session=request.getSession(false);
+		
+	    String viewState = request.getParameter("viewState");
 
+        // "전체 보기" 버튼을 눌렀을 때 세션의 검색 결과를 제거
+        if ("all".equals(viewState) && session != null) {
+            session.removeAttribute("searchList");
+        }
+		
 		if(session!=null&& session.getAttribute("searchList")!=null) {
 			request.setAttribute("boardList", session.getAttribute("searchList"));
 			RequestDispatcher view=request.getRequestDispatcher("WEB-INF/views/list.jsp");

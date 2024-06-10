@@ -34,6 +34,11 @@
     <input type="text" name="searchWord" class="form-control-sm" style="width: 150px;" placeholder="작성자 입력">
     <button type="submit">검색</button>
 </form>
+<!-- 전체 보기 버튼 -->
+<form action="list" method="get" style="display: inline-block; float: right; padding-right: 10px;">
+    <button type="submit">전체 보기</button>
+    <input type="hidden" name="viewState" value="all">
+</form>
 
 <!-- 글쓰기 버튼 -->
 <form action="writeServlet" method="get" style="display: inline-block; float: right; padding-right: 100px;">
