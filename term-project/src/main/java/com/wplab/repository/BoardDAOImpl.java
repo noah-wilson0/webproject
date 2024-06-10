@@ -104,7 +104,6 @@ public class BoardDAOImpl implements BoardDAO{
 		try {
 			connect();
 			stmt = conn.prepareStatement(DELETE_SQL);
-			System.out.println(boardDTO.getTitle());
 			stmt.setString(1, boardDTO.getTitle());
 			stmt.executeUpdate();
 		} catch (SQLException e) {

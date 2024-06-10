@@ -13,7 +13,7 @@
 <div style="max-width: 1000px">
     <!-- 로그인, 회원 정보 관련 -->
        <div>
-           <a style="color:blue; style="display: inline-block; font-weight:bold;">example_user</a>
+           <a style="color:blue; style="display: inline-block; font-weight:bold;">${name}</a>
            <span inline-block; >님 반갑습니다.</span>
            <form action="infoServlet"style="display: inline-block; method="post">
                <button  float: right; type="submit">회원 프로필</button>

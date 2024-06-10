@@ -53,5 +53,17 @@
     <servlet-name>SearchController</servlet-name>
     <servlet-class>com.wplab.controller.SearchController</servlet-class>
   </servlet>
+  <servlet>
+    <description></description>
+    <display-name>LoginController</display-name>
+    <servlet-name>LoginController</servlet-name>
+    <servlet-class>com.wplab.controller.LoginController</servlet-class>
+  </servlet>
+  <servlet>
+    <description></description>
+    <display-name>Signup</display-name>
+    <servlet-name>Signup</servlet-name>
+    <servlet-class>com.wplab.controller.Signup</servlet-class>
+  </servlet>
 
 </web-app>

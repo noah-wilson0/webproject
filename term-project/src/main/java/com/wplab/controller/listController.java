@@ -34,8 +34,8 @@ public class listController extends HttpServlet {
 		String dbcpResourceName = super.getServletContext().getInitParameter("dbcp_resource_name");
 		BoardDAOImpl dao=new BoardDAObyDBCP(dbcpResourceName);
 		
-		//String username=(String) request.getAttribute("username");
-		//request.setAttribute("username", username);
+		String name=(String) request.getAttribute("name");
+		request.setAttribute("name", name);
 		List<BoardDO> list = null;
 		
 		HttpSession session=request.getSession(false);
