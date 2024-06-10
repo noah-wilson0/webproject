@@ -24,28 +24,30 @@
        </div>
     <hr>
     </div>
-<!-- 검색 버튼 -->
-<form action="search" method="post" style="display: inline-block; margin-right: 10px;">
-    <select name="searchCode">
-        <option value="제목">제목</option>
-        <option value="내용">내용</option>
-        <option value="작성자">작성자</option>
-    </select>
-    <input type="text" name="searchWord" class="form-control-sm" style="width: 150px;" placeholder="작성자 입력">
-    <button type="submit">검색</button>
-</form>
-<!-- 전체 보기 버튼 -->
-<form action="list" method="get" style="display: inline-block; float: right; padding-right: 10px;">
-    <button type="submit">전체 보기</button>
-    <input type="hidden" name="viewState" value="all">
-</form>
-
-<!-- 글쓰기 버튼 -->
-<form action="writeServlet" method="get" style="display: inline-block; float: right; padding-right: 100px;">
-    <button type="submit">글쓰기</button>
-</form>
-
-<hr>
+    <div>
+		<!-- 검색 버튼 -->
+		<form action="search" method="post" style="display: inline-block; margin-right: 10px;">
+		    <select name="searchCode">
+		        <option value="제목">제목</option>
+		        <option value="내용">내용</option>
+		        <option value="작성자">작성자</option>
+		    </select>
+		    <input type="text" name="searchWord" class="form-control-sm" style="width: 150px;" placeholder="작성자 입력">
+		    <button type="submit">검색</button>
+		</form>
+		
+		<!-- 전체 보기 버튼 -->
+		<form action="list" method="get" style="display: inline-block; padding-right: 10px;">
+		    <button type="submit">전체 보기</button>
+		    <input type="hidden" name="viewState" value="all">
+		</form>
+		
+		<!-- 글쓰기 버튼 -->
+		<form action="writeServlet" method="get" style="display: inline-block; float: right; padding-right: 100px;">
+		    <button type="submit">글쓰기</button>
+		</form>
+		<hr>
+	</div>
 
     
     <!-- 게시글 목록 table -->
