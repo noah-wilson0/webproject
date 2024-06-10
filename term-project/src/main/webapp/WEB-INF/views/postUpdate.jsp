@@ -52,24 +52,19 @@
 </style>
 </head>
 <body>
-    <table> 
-        <form action="PostServlet" method="post">
-            <tr><td><h2>게시글 조회</h2></td></tr>
-            <tr><td class="header">Title</td></tr>
-            <tr><td><input type="text" value="${post.title}" readonly="readonly"></td></tr>
-            <tr><td class="header">작성자</td></tr>
-            <tr><td><input type="text" value="${post.writer}" readonly="readonly"></td></tr>
-            <tr><td class="header">내용</td></tr>
-            <tr><td><textarea readonly="readonly">${post.content}</textarea></td></tr>
-            <tr><td>
-                <input type="submit" name="action" value="수정">
-                <input type="submit" name="action" value="삭제">
-  			</form>
-                <form action="list" method="get">
-                    <input type="submit" value="목록">
-                </form>
-            </td></tr>
-      
-    </table>
+	<table> 
+		<form action="postUpdate" method="post">
+	    <tr><td><h2>게시글 조회</h2></td></tr>
+	    <tr><td class="header">Title</td></tr>
+	    <tr><td><input type="text" name="title" value="${post.title}" required="required" ></td></tr>
+		<tr><td class="header">작성자</td></tr>
+		<tr><td><input type="text" name="writer" value="${post.writer}" readonly="readonly"></td></tr>
+		<tr><td class="header">내용</td></tr>
+		<tr><td><textarea name="content" required="required">${post.content}</textarea></td></tr>
+	    <tr><td>
+        <input type="submit" value="저장">
+     </form>
+    </td></tr>
+</table>
 </body>
 </html>

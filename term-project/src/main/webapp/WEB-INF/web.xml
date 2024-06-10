@@ -41,6 +41,17 @@
     <servlet-name>MyServletContextListener</servlet-name>
     <servlet-class>com.wplab.service.MyServletContextListener</servlet-class>
   </servlet>
-
+  <servlet>
+    <description></description>
+    <display-name>PostUpdateController</display-name>
+    <servlet-name>PostUpdateController</servlet-name>
+    <servlet-class>com.wplab.controller.PostUpdateController</servlet-class>
+  </servlet>
+  <servlet>
+    <description></description>
+    <display-name>SearchController</display-name>
+    <servlet-name>SearchController</servlet-name>
+    <servlet-class>com.wplab.controller.SearchController</servlet-class>
+  </servlet>
 
 </web-app>

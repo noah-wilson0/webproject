@@ -1,7 +1,6 @@
 package com.wplab.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import com.wplab.entity.BoardDO;
 import com.wplab.repository.BoardDAOImpl;
@@ -16,7 +15,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 /**
- * writer 회원 페이지 만들면 바꾸기
+ * 		String writer="tester1";
+ 		회원 페이지 만들면 바꾸기
  * 
  */
 @WebServlet("/writeServlet")
@@ -54,15 +54,17 @@ public class WriteController extends HttpServlet {
 		boardDTO.setContent(content);
 		boardDTO.setRegdate();
 		
-		ArrayList<BoardDO> boardList=(ArrayList<BoardDO>) session.getAttribute("board");
-		if(boardList==null) {
-			boardList=new ArrayList<BoardDO>();
-		}
+		//ArrayList<BoardDO> boardList=(ArrayList<BoardDO>) session.getAttribute("board");
+//		if(boardList==null) {
+//			boardList=new ArrayList<BoardDO>();
+//		}
 		BoardDO boardDO=new BoardDO(writer, title, content);
-		boardList.add(boardDO);
+		//boardList.add(boardDO);
 		dao.insert(boardDTO);
-		session.setAttribute("board",boardList);
+		//session.setAttribute("board",boardList);
 		response.sendRedirect("list");
+
+		
 	}
 
 }

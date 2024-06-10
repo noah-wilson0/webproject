@@ -22,6 +22,8 @@ public class BoardDAOImpl implements BoardDAO{
 	private final String DELETE_SQL="delete BOARD  where TITLE=?;";
 	private final String FIND_ALL_SQL="select * from  BOARD;";
 	private final String FIND_BOARD_SQL="select * from  BOARD where TITLE=?;";
+	private final String FIND_TITLE_BOARD_SQL="select * from  BOARD where TITLE=?;";
+	private final String FIND_WRITER_BOARD_SQL="select * from  BOARD where WRITER=?;";
 
 	public BoardDAOImpl() {}
 	public BoardDAOImpl(DBconnectionInfo dbInfo) {
@@ -56,10 +58,11 @@ public class BoardDAOImpl implements BoardDAO{
 		try {
 			connect();
 			stmt = conn.prepareStatement(INSERT_SQL);
-			stmt.setString(1, boardDTO.getTitle());
-			stmt.setString(2, boardDTO.getContent());
-			stmt.setString(3, boardDTO.getRegdate());
-			stmt.setString(4, boardDTO.getWriter());
+			stmt.setString(1, boardDTO.getWriter());
+			stmt.setString(2, boardDTO.getTitle());
+			stmt.setString(3, boardDTO.getContent());
+			stmt.setString(4, boardDTO.getRegdate());
+
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -101,6 +104,7 @@ public class BoardDAOImpl implements BoardDAO{
 		try {
 			connect();
 			stmt = conn.prepareStatement(DELETE_SQL);
+			System.out.println(boardDTO.getTitle());
 			stmt.setString(1, boardDTO.getTitle());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
@@ -159,5 +163,59 @@ public class BoardDAOImpl implements BoardDAO{
 		}	
 		return  result;
 	}
+	
+	@Override
+	public ArrayList<BoardDTO> findByTitleBoard(String title) {
+		ArrayList<BoardDTO> result=new ArrayList<BoardDTO>(); 
+		try {
+			connect();
+			stmt = conn.prepareStatement(FIND_TITLE_BOARD_SQL);
+			stmt.setString(1, title);
+			rs=stmt.executeQuery();
+			while(rs.next()) {
+				BoardDTO boardDTO=new BoardDTO();
+				boardDTO.setBoardId(Integer.parseInt(rs.getString("BOARD_ID")));
+				boardDTO.setWriter(rs.getString("WRITER"));
+				boardDTO.setTitle(rs.getString("TITLE"));
+				boardDTO.setContent(rs.getString("CONTENT"));
+				boardDTO.setRegdate(rs.getString("REGDATE"));
+				result.add(boardDTO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			disconnect();
+		}	
+		return  result;
+	}
+	
+	@Override
+	public ArrayList<BoardDTO> findByWriterBoard(String writer) {
+		ArrayList<BoardDTO> result=new ArrayList<BoardDTO>(); 
+
+		try {
+			connect();
+			stmt = conn.prepareStatement(FIND_WRITER_BOARD_SQL);
+			stmt.setString(1, writer);
+			rs=stmt.executeQuery();
+			while(rs.next()) {
+				BoardDTO boardDTO=new BoardDTO();
+				boardDTO.setBoardId(Integer.parseInt(rs.getString("BOARD_ID")));
+				boardDTO.setWriter(rs.getString("WRITER"));
+				boardDTO.setTitle(rs.getString("TITLE"));
+				boardDTO.setContent(rs.getString("CONTENT"));
+				boardDTO.setRegdate(rs.getString("REGDATE"));
+				result.add(boardDTO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			disconnect();
+		}	
+		return  result;
+	}
+
 
 }

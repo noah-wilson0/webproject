@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,18 +36,27 @@ public class listController extends HttpServlet {
 		
 		//String username=(String) request.getAttribute("username");
 		//request.setAttribute("username", username);
-
-		List<BoardDO> list=dao.findAll().stream().map(BoardDO::new).collect(Collectors.toList());
+		List<BoardDO> list = null;
 		
-//		HttpSession session=request.getSession();
+		HttpSession session=request.getSession(false);
+
+		if(session!=null&& session.getAttribute("searchList")!=null) {
+			request.setAttribute("boardList", session.getAttribute("searchList"));
+			RequestDispatcher view=request.getRequestDispatcher("WEB-INF/views/list.jsp");
+			view.forward(request, response);
+		}
+		else {
+			list=dao.findAll().stream().map(BoardDO::new).collect(Collectors.toList());
+			request.setAttribute("boardList", list);
+			
+			RequestDispatcher view=request.getRequestDispatcher("WEB-INF/views/list.jsp");
+			view.forward(request, response);
+		}
+		
 //		if(session==null) {
 //			response.sendRedirect(request.getContextPath()+"/start.html");
 //			return;
 //		}
-		request.setAttribute("boardList", list);
-		
-		RequestDispatcher view=request.getRequestDispatcher("WEB-INF/views/list.jsp");
-		view.forward(request, response);
 		
 		
 	}
@@ -54,7 +64,7 @@ public class listController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
 	}
 
 }

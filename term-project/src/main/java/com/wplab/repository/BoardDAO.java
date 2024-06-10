@@ -9,4 +9,6 @@ public interface BoardDAO {
 	public void delete(BoardDTO boardDTO);
 	public ArrayList<BoardDTO> findAll();
 	public BoardDTO findByBoard(String title);
-}
+	public ArrayList<BoardDTO> findByTitleBoard(String title);
+	public ArrayList<BoardDTO> findByWriterBoard(String writer);
+	}
