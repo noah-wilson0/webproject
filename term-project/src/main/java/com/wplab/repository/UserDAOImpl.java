@@ -19,7 +19,7 @@ public class UserDAOImpl implements UserDAO{
 	private final String INSERT_SQL="insert into POSTUSER   (ID ,PASSWORD, NAME, AUTHORITY ) values (?,?,?,?)";
 	private final String UPDATE_SQL="update POSTUSER  set PASSWORD=?, NAME=? where ID=?";
 	private final String DELETE_SQL="delete POSTUSER   where ID=?;";
-	private final String FIND_USER_SQL="select * from POSTUSER  where BOARD_ID= ? ";
+	private final String FIND_USER_SQL="select * from POSTUSER  where ID= ? ";
 
 	protected void connect() {
 		try {
