@@ -3,6 +3,7 @@ package com.wplab.controller;
 import java.io.IOException;
 
 import com.wplab.entity.BoardDO;
+import com.wplab.entity.UserDO;
 import com.wplab.repository.BoardDAOImpl;
 import com.wplab.repository.BoardDAObyDBCP;
 import com.wplab.repository.BoardDTO;
@@ -14,11 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-/**
- * 		String writer="tester1";
- 		회원 페이지 만들면 바꾸기
- * 
- */
+
 @WebServlet("/writeServlet")
 public class WriteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -44,27 +41,18 @@ public class WriteController extends HttpServlet {
 		
 		String title=request.getParameter("title");
 		String content=request.getParameter("content");
+		String writer=request.getParameter("writer");
 		
-		HttpSession session= request.getSession(false);
-		//String writer=(String) session.getAttribute("username");
-		String writer="tester1";
 		BoardDTO boardDTO=new BoardDTO();
 		boardDTO.setWriter(writer);
 		boardDTO.setTitle(title);
 		boardDTO.setContent(content);
 		boardDTO.setRegdate();
 		
-		//ArrayList<BoardDO> boardList=(ArrayList<BoardDO>) session.getAttribute("board");
-//		if(boardList==null) {
-//			boardList=new ArrayList<BoardDO>();
-//		}
-		BoardDO boardDO=new BoardDO(writer, title, content);
-		//boardList.add(boardDO);
+		//BoardDO boardDO=new BoardDO(writer, title, content);
 		dao.insert(boardDTO);
-		//session.setAttribute("board",boardList);
 		response.sendRedirect("list");
 
-		
 	}
 
 }

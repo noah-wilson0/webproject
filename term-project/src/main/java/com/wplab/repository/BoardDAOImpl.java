@@ -17,11 +17,11 @@ public class BoardDAOImpl implements BoardDAO{
 	private ResultSet rs = null;
 	
 	private final String INSERT_SQL="insert into BOARD  (WRITER,TITLE,CONTENT,REGDATE) values (?,?,?,?)";
-	private final String GET_SQL="select * from BOARD   where BOARD_ID= ? ";
-	private final String UPDATE_SQL="update BOARD set TITLE=?,CONTENT=?, REGDATE=? where WRITER=?";
+	//private final String GET_SQL="select * from BOARD   where BOARD_ID= ? ";
+	private final String UPDATE_SQL="update BOARD set TITLE=?,CONTENT=?, REGDATE=? where WRITER=? and BOARD_ID=?";
 	private final String DELETE_SQL="delete BOARD  where TITLE=?;";
 	private final String FIND_ALL_SQL="select * from  BOARD;";
-	private final String FIND_BOARD_SQL="select * from  BOARD where TITLE=?;";
+	private final String FIND_BOARD_SQL="select * from  BOARD where TITLE=?;"; 
 	private final String FIND_TITLE_BOARD_SQL="select * from  BOARD where TITLE=?;";
 	private final String FIND_WRITER_BOARD_SQL="select * from  BOARD where WRITER=?;";
 
@@ -89,6 +89,7 @@ public class BoardDAOImpl implements BoardDAO{
 			stmt.setString(2, boardDTO.getContent());
 			stmt.setString(3, boardDTO.getRegdate());
 			stmt.setString(4, boardDTO.getWriter());
+			stmt.setInt(5, boardDTO.getBoardId());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -18,7 +18,7 @@
            <form action="infoServlet"style="display: inline-block; method="post">
                <button  float: right; type="submit">회원 프로필</button>
            </form>
-           <form action="logoutServlet"style="display: inline-block; method="post">
+           <form action="logoutServlet"style="display: inline-block; method="get">
                <button  float: right; type="submit">로그아웃</button>
            </form>
        </div>

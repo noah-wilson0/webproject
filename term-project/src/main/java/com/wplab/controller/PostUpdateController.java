@@ -36,11 +36,14 @@ public class PostUpdateController extends HttpServlet {
 		BoardDAOImpl dao=new BoardDAObyDBCP(dbcpResourceName);
 		String action = request.getParameter("action");
 		
+		int boardID=Integer.parseInt(request.getParameter("board_id"));
+		System.out.println("ActionBoardID:"+boardID);
+
 	    String title=request.getParameter("title");
 	    String content=request.getParameter("content");
-	    //String writer=request.getParameter("writer");
-		String writer="tester1";
+	    String writer=request.getParameter("writer");
 	    BoardDTO boardDTO=new BoardDTO();
+	    boardDTO.setBoardId(boardID);
 	    boardDTO.setWriter(writer);
 	    boardDTO.setTitle(title);
 	    boardDTO.setContent(content);

@@ -15,8 +15,11 @@ import com.wplab.entity.BoardDO;
 import com.wplab.repository.BoardDAOImpl;
 import com.wplab.repository.BoardDAObyDBCP;
 import com.wplab.repository.BoardDTO;
+import com.wplab.service.BoardDoByBoardDtoConverter;
 import com.wplab.service.FindMathContenter;
-
+/**
+ * 제목검색은 text(띄워쓰기까지)가 완전히 똑같으면 출력이 잘되는데 애초에 trim해서 저장하고 비교해야되려나?
+ */
 @WebServlet("/search")
 public class SearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -33,6 +36,8 @@ public class SearchController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String dbcpResourceName = super.getServletContext().getInitParameter("dbcp_resource_name");
 		BoardDAOImpl dao=new BoardDAObyDBCP(dbcpResourceName);
+		BoardDoByBoardDtoConverter converter=new BoardDoByBoardDtoConverter();
+
 		String searchCode=request.getParameter("searchCode");
 		String searchWord=request.getParameter("searchWord");
 		System.out.println("searchCode:"+searchCode);
@@ -46,7 +51,7 @@ public class SearchController extends HttpServlet {
 	    	if(!boardDTOList.isEmpty()) {
 	    		boardDOList=new ArrayList<BoardDO>();
 		        for (BoardDTO boardDTO : boardDTOList) {
-		            boardDOList.add(new BoardDO(boardDTO));
+		            boardDOList.add(converter.convertBoardDTOtoBoardDO(boardDTO));
 		        }
 	    	}
 	        break;
@@ -65,7 +70,7 @@ public class SearchController extends HttpServlet {
 	    	if(!boardDTOList.isEmpty()) {
 	    		boardDOList=new ArrayList<BoardDO>();
 		        for (BoardDTO boardDTO : boardDTOList) {
-		            boardDOList.add(new BoardDO(boardDTO));
+		            boardDOList.add(converter.convertBoardDTOtoBoardDO(boardDTO));
 		        }
 	    	}
 	    	break;

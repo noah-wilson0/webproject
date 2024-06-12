@@ -10,11 +10,13 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
+import com.wplab.entity.UserDO;
 import com.wplab.repository.BoardDAOImpl;
 import com.wplab.repository.BoardDAObyDBCP;
 import com.wplab.repository.UserDAOImpl;
 import com.wplab.repository.UserDAObyDBCP;
 import com.wplab.repository.UserDTO;
+import com.wplab.service.UserDoDtoConverter;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
@@ -46,18 +48,21 @@ public class LoginController extends HttpServlet {
 		UserDTO findedUserDTO=new UserDTO();
 		
 		findedUserDTO=dao.findUser(userDTO);
+		
 		HttpSession session=request.getSession();
-		if(session==null) {
+		if(session==null || findedUserDTO==null) {
 			response.sendRedirect("login");
 		}
-		if(findedUserDTO==null) {
-			response.sendRedirect("login");
+		else if(id.equals(findedUserDTO.getId()) && password.equals(findedUserDTO.getPassword())){
+			UserDoDtoConverter conveter=new UserDoDtoConverter();
+			UserDO userDO=conveter.convertUserDTOtoDO(findedUserDTO);
+			session.setAttribute("name", String.format("%s(%s)", userDO.getName(),userDO.getId()));
+			session.setAttribute("user", userDO);
+			
+			response.sendRedirect("list");
 		}
 		else {
-			request.setAttribute("id", findedUserDTO.getId());
-			request.setAttribute("name", findedUserDTO.getName());
-			RequestDispatcher view=request.getRequestDispatcher("WEB-INF/views/list.jsp");
-			view.forward(request, response);
+			response.sendRedirect("login");
 		}
 	}
 

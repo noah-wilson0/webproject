@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>글쓰기</title>
+<title>게시글 조회</title>
 <style>
     table {
         margin: auto;
@@ -52,20 +52,23 @@
 </style>
 </head>
 <body>
-<form action="writeServlet" method="post">
-<table> 
-    <tr><td><h2>글쓰기</h2></td></tr>
-    <tr><td class="header">Title</td></tr>
-    <tr><td><input type="text" placeholder="제목을 입력하세요" name="title"></td></tr>
-    <tr><td class="header">작성자</td></tr>
-    <tr><td><input type="text" name="writer" value="${name}" readonly="readonly"></td></tr>
-    <tr><td class="header">Comment</td></tr>
-    <tr><td><textarea placeholder="내용을 입력하세요" name="content"></textarea></td></tr>
-    <tr><td>
-        <input type="submit" value="등록" onclick="alert('작성 완료!')">
-        <input type="submit" value="취소" onclick="history.back()">
-    </td></tr>
-</table>
-</form>
+    <table> 
+         <tr><td><h2>게시글 조회</h2></td></tr>
+         <tr><td class="header">Title</td></tr>
+          <tr><td><input type="hidden" name="board_id" value="${post.boardId}"></td></tr>
+	    <tr><td><input type="text" name="title" value="${post.title}" required="required" ></td></tr>
+         <tr><td class="header">작성자</td></tr>
+         <tr><td><input type="text" name="writer"  value="${post.writer}" readonly="readonly"></td></tr>
+         <tr><td class="header">작성일</td></tr>
+        <tr><td><input type="text" name="regdate" value="${post.regdate}" readonly="readonly"></textarea></td></tr>
+         <tr><td class="header">내용</td></tr>
+         <tr><td><textarea name="content" readonly="readonly">${post.content}</textarea></td></tr>
+         <tr><td>
+             <form action="list" method="get">
+                 <input type="submit" value="목록">
+             </form>
+         </td></tr>
+      
+    </table>
 </body>
 </html>

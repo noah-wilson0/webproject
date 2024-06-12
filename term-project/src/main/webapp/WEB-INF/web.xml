@@ -55,15 +55,14 @@
   </servlet>
   <servlet>
     <description></description>
-    <display-name>LoginController</display-name>
-    <servlet-name>LoginController</servlet-name>
-    <servlet-class>com.wplab.controller.LoginController</servlet-class>
+    <display-name>LogoutController</display-name>
+    <servlet-name>LogoutController</servlet-name>
+    <servlet-class>com.wplab.controller.LogoutController</servlet-class>
   </servlet>
   <servlet>
     <description></description>
-    <display-name>Signup</display-name>
-    <servlet-name>Signup</servlet-name>
-    <servlet-class>com.wplab.controller.Signup</servlet-class>
+    <display-name>PrevNotificationBoardController</display-name>
+    <servlet-name>PrevNotificationBoardController</servlet-name>
+    <servlet-class>com.wplab.controller.PrevNotificationBoardController</servlet-class>
   </servlet>
-
 </web-app>

@@ -10,7 +10,6 @@ import com.wplab.service.DBconnectionInfo;
 
 public class UserDAOImpl implements UserDAO{
 
-	
 	private DBconnectionInfo dbInfo;
 	protected Connection conn = null;
 	private PreparedStatement stmt = null;
@@ -21,6 +20,12 @@ public class UserDAOImpl implements UserDAO{
 	private final String DELETE_SQL="delete POSTUSER   where ID=?;";
 	private final String FIND_USER_SQL="select * from POSTUSER  where ID= ? ";
 
+	public UserDAOImpl() {
+	}
+	public UserDAOImpl(DBconnectionInfo dbInfo) {
+		this.dbInfo=dbInfo;
+	}
+	
 	protected void connect() {
 		try {
 			Class.forName(dbInfo.getDiverName());
@@ -110,9 +115,9 @@ public class UserDAOImpl implements UserDAO{
 			rs=stmt.executeQuery();
 			if(rs.next()) {
 				result.setId(rs.getString("ID"));
-				result.setPassword(rs.getString("PASSWORD "));
+				result.setPassword(rs.getString("PASSWORD"));
 				result.setName(rs.getString("NAME"));
-				result.setAuthority(rs.getString("AUTHORITY "));
+				result.setAuthority(rs.getString("AUTHORITY"));
 				
 			}
 		} catch (SQLException e) {

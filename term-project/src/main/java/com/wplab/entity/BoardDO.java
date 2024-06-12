@@ -17,7 +17,6 @@ public class BoardDO {
 	
 	public BoardDO() {}
 	public BoardDO(int boardId, String writer, String title, String content) {
-		super();
 		this.boardId = boardId;
 		this.writer = writer;
 		this.title = title;
@@ -25,21 +24,18 @@ public class BoardDO {
 		setRegdateNow();
 	}
 	public BoardDO( String writer, String title, String content) {
-		super();
 		this.writer = writer;
 		this.title = title;
 		this.content = content;
 		setRegdateNow();
 	}
-	
-	public BoardDO(BoardDTO boardDTO) {
-	    this.boardId = boardDTO.getBoardId();
-	    this.writer = boardDTO.getWriter();
-	    this.title = boardDTO.getTitle();
-	    this.content = boardDTO.getContent();
-	    this.regdate = boardDTO.getRegdate();
+	public BoardDO( int boardId,String writer, String title, String content,String regdate) {
+		this.boardId = boardId;
+		this.writer = writer;
+		this.title = title;
+		this.content = content;
+		this.regdate=regdate;
 	}
-
 	
 	public int getBoardId() {
 		return boardId;
