@@ -65,4 +65,28 @@
     <servlet-name>PrevNotificationBoardController</servlet-name>
     <servlet-class>com.wplab.controller.PrevNotificationBoardController</servlet-class>
   </servlet>
+  <servlet>
+    <description></description>
+    <display-name>UserInfoController</display-name>
+    <servlet-name>UserInfoController</servlet-name>
+    <servlet-class>com.wplab.controller.UserInfoController</servlet-class>
+  </servlet>
+  <servlet>
+    <description></description>
+    <display-name>UpdateUserController</display-name>
+    <servlet-name>UpdateUserController</servlet-name>
+    <servlet-class>com.wplab.controller.UpdateUserController</servlet-class>
+  </servlet>
+  <servlet>
+    <description></description>
+    <display-name>executeUpdateUserController</display-name>
+    <servlet-name>executeUpdateUserController</servlet-name>
+    <servlet-class>com.wplab.controller.executeUpdateUserController</servlet-class>
+  </servlet>
+  <servlet>
+    <description></description>
+    <display-name>DelteUserController</display-name>
+    <servlet-name>DelteUserController</servlet-name>
+    <servlet-class>com.wplab.controller.DelteUserController</servlet-class>
+  </servlet>
 </web-app>

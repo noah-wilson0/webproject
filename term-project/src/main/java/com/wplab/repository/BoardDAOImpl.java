@@ -19,7 +19,9 @@ public class BoardDAOImpl implements BoardDAO{
 	private final String INSERT_SQL="insert into BOARD  (WRITER,TITLE,CONTENT,REGDATE) values (?,?,?,?)";
 	//private final String GET_SQL="select * from BOARD   where BOARD_ID= ? ";
 	private final String UPDATE_SQL="update BOARD set TITLE=?,CONTENT=?, REGDATE=? where WRITER=? and BOARD_ID=?";
+	private final String UPDATE_WRITER_SQL= "update BOARD set WRITER=? where WRITER=?";
 	private final String DELETE_SQL="delete BOARD  where TITLE=?;";
+	private final String DELETE_MATH_WRITER_SQL="delete from BOARD where WRITER=?;";
 	private final String FIND_ALL_SQL="select * from  BOARD;";
 	private final String FIND_BOARD_SQL="select * from  BOARD where TITLE=?;"; 
 	private final String FIND_TITLE_BOARD_SQL="select * from  BOARD where TITLE=?;";
@@ -99,6 +101,26 @@ public class BoardDAOImpl implements BoardDAO{
 			disconnect();
 		}
 	}
+	
+	@Override
+	public void updateWriter(String prevName,String updateName) {
+		try {
+			connect();
+//			System.out.println("prevName:"+prevName);
+//			System.out.println("updatename:"+updateName);
+			stmt = conn.prepareStatement(UPDATE_WRITER_SQL);
+			stmt.setString(1,updateName);
+			stmt.setString(2, prevName);
+
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			disconnect();
+		}		
+	}
 
 	@Override
 	public void delete(BoardDTO boardDTO) {
@@ -115,6 +137,26 @@ public class BoardDAOImpl implements BoardDAO{
 			disconnect();
 		}
 	}
+	/**
+	 * deleteMathWriterAll의 파라미터인 userDTO.getName()= name(id)로 받아야한다.
+	 */
+	@Override
+	public void deleteMathWriterAll(UserDTO userDTO) {
+		try {
+			connect();
+			stmt = conn.prepareStatement(DELETE_MATH_WRITER_SQL);
+			stmt.setString(1, userDTO.getName());
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			disconnect();
+		}
+	}
+		
+	
 	@Override
 	public ArrayList<BoardDTO> findAll() {
 		ArrayList<BoardDTO> result=new ArrayList<BoardDTO>(); 

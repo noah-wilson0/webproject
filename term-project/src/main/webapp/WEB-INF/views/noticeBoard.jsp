@@ -15,7 +15,7 @@
        <div>
            <a style="color:blue; style="display: inline-block; font-weight:bold;">${name}</a>
            <span inline-block; >님 반갑습니다.</span>
-           <form action="infoServlet"style="display: inline-block; method="post">
+           <form action="infoServlet"style="display: inline-block; method="get">
                <button  float: right; type="submit">회원 프로필</button>
            </form>
            <form action="logoutServlet"style="display: inline-block; method="get">

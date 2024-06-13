@@ -1,5 +1,9 @@
 package com.wplab.controller;
 
+/**
+ * 로그인하기 전 시작 페이지
+ */
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

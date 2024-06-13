@@ -43,7 +43,6 @@ public class listController extends HttpServlet {
 		
 	    String viewState = request.getParameter("viewState");
 
-        // "전체 보기" 버튼을 눌렀을 때 세션의 검색 결과를 제거
         if ("all".equals(viewState) && session != null) {
             session.removeAttribute("searchList");
         }
@@ -77,7 +76,7 @@ public class listController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
+		doGet(request, response);
 	}
 
 }
