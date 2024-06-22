@@ -23,11 +23,11 @@ import com.wplab.repository.BoardDAObyDBCP;
 import com.wplab.service.BoardDoByBoardDtoConverter;
 
 @WebServlet("/start")
-public class PrevNotificationBoardController extends HttpServlet {
+public class StartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public PrevNotificationBoardController() {
+    public StartController() {
         super();
     }
 
@@ -42,7 +42,7 @@ public class PrevNotificationBoardController extends HttpServlet {
 		UserDO userDO=new UserDO();
 		userDO.setAuthority("admin");
 		request.setAttribute("boardList", list);
-		session.setAttribute("name", "admin");
+		//session.setAttribute("name", "user");
 		session.setAttribute("user", userDO);
 		RequestDispatcher view=request.getRequestDispatcher("WEB-INF/views/prevNoticeBoard.jsp");
 		view.forward(request, response);
