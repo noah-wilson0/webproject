@@ -43,7 +43,7 @@ public class SignupController extends HttpServlet {
 		userDTO.setId(id);
 		userDTO.setPassword(password);
 		userDTO.setName(name);
-		userDTO.setAuthority("admin");
+		userDTO.setAuthority("manager");
 		dao.insert(userDTO);
 	
 		RequestDispatcher view=request.getRequestDispatcher("WEB-INF/views/login.jsp");

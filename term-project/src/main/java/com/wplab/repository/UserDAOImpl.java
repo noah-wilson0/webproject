@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.wplab.service.DBconnectionInfo;
 
@@ -19,6 +21,7 @@ public class UserDAOImpl implements UserDAO{
 	private final String UPDATE_SQL="update POSTUSER  set PASSWORD=?, NAME=? where ID=?";
 	private final String DELETE_SQL="delete POSTUSER   where ID=?;";
 	private final String FIND_USER_SQL="select * from POSTUSER  where ID= ? ";
+	private final String GET_USER_LIST_SQL="select * from POSTUSER";
 
 	public UserDAOImpl() {
 	}
@@ -127,6 +130,38 @@ public class UserDAOImpl implements UserDAO{
 			disconnect();
 		}	
 		return  result;		
+	}
+	
+	@Override
+	public List<UserDTO> getUserList() {
+		List<UserDTO> list = null;
+		connect();
+		
+		try {
+			stmt = conn.prepareStatement(GET_USER_LIST_SQL);
+			
+			rs = stmt.executeQuery();
+			if(rs.isBeforeFirst()) {
+				list = new ArrayList<>();
+				while(rs.next()) {
+					if(rs.getString("Authority").equals("manager")) {
+						UserDTO user = new UserDTO();
+						user.setId(rs.getString("ID"));
+						user.setPassword(rs.getString("PASSWORD"));
+						user.setName(rs.getString("NAME"));
+						user.setAuthority(rs.getString("Authority"));
+						list.add(user);						
+					}
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		
+		return list;
 	}
 
 }

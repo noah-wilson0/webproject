@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.wplab.entity.BoardDO" %>
 <%@ page import="java.net.URLEncoder" %>
@@ -15,9 +17,18 @@
        <div>
            <a style="color:blue; style="display: inline-block; font-weight:bold;">${name}</a>
            <span inline-block; >님 반갑습니다.</span>
-           <form action="infoServlet"style="display: inline-block; method="get">
-               <button  float: right; type="submit">회원 프로필</button>
-           </form>
+           <c:choose>
+	           <c:when test="${user.authority != 'admin'}">
+		           <form action="infoServlet"style="display: inline-block; method="get">
+		               <button  float: right; type="submit">회원 프로필</button>
+		           </form>
+	           </c:when>
+	           <c:otherwise>
+			       <form action="infoManagerServlet"style="display: inline-block; method="get">
+		               <button  float: right; type="submit">회원 관리</button>
+		           </form>
+	           </c:otherwise>
+           </c:choose>
            <form action="logoutServlet"style="display: inline-block; method="get">
                <button  float: right; type="submit">로그아웃</button>
            </form>

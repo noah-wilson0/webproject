@@ -89,4 +89,10 @@
     <servlet-name>DelteUserController</servlet-name>
     <servlet-class>com.wplab.controller.DelteUserController</servlet-class>
   </servlet>
+  <servlet>
+    <description></description>
+    <display-name>UserInfoManagementController</display-name>
+    <servlet-name>UserInfoManagementController</servlet-name>
+    <servlet-class>com.wplab.controller.UserInfoManagementController</servlet-class>
+  </servlet>
 </web-app>

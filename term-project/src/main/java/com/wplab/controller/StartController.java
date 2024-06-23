@@ -40,7 +40,7 @@ public class StartController extends HttpServlet {
 
 		list=dao.findAll().stream().map(converter::convertBoardDTOtoBoardDO).collect(Collectors.toList());
 		UserDO userDO=new UserDO();
-		userDO.setAuthority("admin");
+		userDO.setAuthority("manager");
 		request.setAttribute("boardList", list);
 		//session.setAttribute("name", "user");
 		session.setAttribute("user", userDO);
