@@ -59,9 +59,8 @@ public class PostController extends HttpServlet {
 		request.setAttribute("post", boardDO);
 		request.setAttribute("files", files);
 		if (currentUserName == null || currentUserName.isBlank()) {
-			currentUserName="0000";
-		} else {
-		}
+			currentUserName="guest";
+		} 
 		
         if(currentUserName.equals(boardDO.getWriter())
         		||currentUser.getAuthority().equals("admin")){
@@ -98,9 +97,7 @@ public class PostController extends HttpServlet {
 	    
 	    System.out.println("boardDTO"+String.valueOf(boardDTO.getContent()));
 	    System.out.println("boardDTO"+String.valueOf(boardDTO.getWriter()));
-	    /**
-	     * 수정을 WriteController의 get메소드로 바꾸기
-	     */
+
 	    if ("삭제".equals(action)) {
 	    	dao.delete(boardDTO);
 	    	fdao.deleteFile(fdto);
@@ -111,7 +108,7 @@ public class PostController extends HttpServlet {
 	    else if ("수정".equals(action)) {
 			BoardDoByBoardDtoConverter converter=new BoardDoByBoardDtoConverter();
 
-	    	BoardDO boardDO=converter.convertBoardDTOtoBoardDO(boardDTO);//new BoardDO(boardDTO);
+	    	BoardDO boardDO=converter.convertBoardDTOtoBoardDO(boardDTO);
 	    	System.out.println(String.valueOf(boardDO));
 			request.setAttribute("post", boardDO);
 			RequestDispatcher view=request.getRequestDispatcher("WEB-INF/views/postUpdate.jsp");
