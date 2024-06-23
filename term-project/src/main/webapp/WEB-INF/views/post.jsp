@@ -64,6 +64,10 @@
         <tr><td><input type="text" name="regdate" value="${post.regdate}" readonly="readonly"></textarea></td></tr>
             <tr><td class="header">내용</td></tr>
             <tr><td><textarea name="content" readonly="readonly">${post.content}</textarea></td></tr>
+            <tr><td class="header">첨부파일</td></tr>
+            <tr><td><a href="upload/${files[0].fileName}" download>${files[0].fileName}</a></td></tr>
+            <tr><td><a href="upload/${files[1].fileName}" download>${files[1].fileName}</a></td></tr>
+            <tr><td><a href="upload/${files[2].fileName}" download>${files[2].fileName}</a></td></tr>
             <tr><td>
                 <input type="submit" name="action" value="수정">
                 <input type="submit" name="action" value="삭제">
