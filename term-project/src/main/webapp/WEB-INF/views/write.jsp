@@ -52,18 +52,22 @@
 </style>
 </head>
 <body>
-<form action="writeServlet" method="post">
+<form action="writeServlet" method="post" enctype="multipart/form-data">
 <table> 
     <tr><td><h2>글쓰기</h2></td></tr>
     <tr><td class="header">Title</td></tr>
-    <tr><td><input type="text" placeholder="제목을 입력하세요" name="title"></td></tr>
+    <tr><td><input type="text" placeholder="제목을 입력하세요" name="title" required></td></tr>
     <tr><td class="header">작성자</td></tr>
     <tr><td><input type="text" name="writer" value="${name}" readonly="readonly"></td></tr>
     <tr><td class="header">Comment</td></tr>
-    <tr><td><textarea placeholder="내용을 입력하세요" name="content"></textarea></td></tr>
+    <tr><td><textarea placeholder="내용을 입력하세요" name="content" required></textarea></td></tr>
+    <tr><td class="header">파일</td></tr>
+    <tr><td><input type="file" name="fileName1"></td></tr>
+    <tr><td><input type="file" name="fileName2"></td></tr>
+    <tr><td><input type="file" name="fileName3"></td></tr>
     <tr><td>
         <input type="submit" value="등록" onclick="alert('작성 완료!')">
-        <input type="submit" value="취소" onclick="history.back()">
+        <input type="button" value="취소" onclick="history.back()">
     </td></tr>
 </table>
 </form>

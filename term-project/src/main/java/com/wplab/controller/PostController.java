@@ -1,11 +1,16 @@
 package com.wplab.controller;
 import java.io.IOException;
+import java.util.List;
 
 import com.wplab.entity.BoardDO;
 import com.wplab.entity.UserDO;
 import com.wplab.repository.BoardDAOImpl;
 import com.wplab.repository.BoardDAObyDBCP;
 import com.wplab.repository.BoardDTO;
+import com.wplab.repository.FileDAO;
+import com.wplab.repository.FileDAOImpl;
+import com.wplab.repository.FileDAObyDBCP;
+import com.wplab.repository.FileDTO;
 import com.wplab.service.BoardDoByBoardDtoConverter;
 
 /**
@@ -45,11 +50,16 @@ public class PostController extends HttpServlet {
 		//System.out.println("boardDTO.getTItle():"+boardDTO.getTitle());
 		BoardDO boardDO=converter.convertBoardDTOtoBoardDO(boardDTO);
 		//System.out.println("boardDO.getTItle():"+boardDO.getTitle());
-
-		request.setAttribute("post", boardDO);
 		
+		FileDAO fdao = new FileDAObyDBCP(dbcpResourceName);
+		FileDTO file = new FileDTO();
+		file.setBoardId(boardDTO.getBoardId());
+		List<FileDTO> files = fdao.getFileList(file);
+		
+		request.setAttribute("post", boardDO);
+		request.setAttribute("files", files);
         if(currentUserName.equals(boardDO.getWriter())
-        		||currentUser.getAuthority().equals("admin")){
+        		||currentUser.getAuthority().equals("manager")){
         	
         	RequestDispatcher view=request.getRequestDispatcher("WEB-INF/views/post.jsp");
         	view.forward(request, response);
@@ -64,6 +74,7 @@ public class PostController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String dbcpResourceName = super.getServletContext().getInitParameter("dbcp_resource_name");
 		BoardDAOImpl dao=new BoardDAObyDBCP(dbcpResourceName);
+		FileDAOImpl fdao = new FileDAObyDBCP(dbcpResourceName);
 		String action = request.getParameter("action");
 		
 		int boardID=Integer.parseInt(request.getParameter("board_id"));
@@ -77,6 +88,9 @@ public class PostController extends HttpServlet {
 	    boardDTO.setTitle(title);
 	    boardDTO.setContent(content);
 	    boardDTO.setRegdate(regdate);
+	    FileDTO fdto = new FileDTO();
+	    fdto.setBoardId(boardID);
+	    
 	    System.out.println("boardDTO"+String.valueOf(boardDTO.getContent()));
 	    System.out.println("boardDTO"+String.valueOf(boardDTO.getWriter()));
 	    /**
@@ -84,6 +98,7 @@ public class PostController extends HttpServlet {
 	     */
 	    if ("삭제".equals(action)) {
 	    	dao.delete(boardDTO);
+	    	fdao.deleteFile(fdto);
 			response.sendRedirect("list");	
 			return;
 
