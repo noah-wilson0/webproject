@@ -58,6 +58,11 @@ public class PostController extends HttpServlet {
 		
 		request.setAttribute("post", boardDO);
 		request.setAttribute("files", files);
+		if (currentUserName == null || currentUserName.isBlank()) {
+			currentUserName="0000";
+		} else {
+		}
+		
         if(currentUserName.equals(boardDO.getWriter())
         		||currentUser.getAuthority().equals("admin")){
         	

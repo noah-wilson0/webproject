@@ -43,6 +43,8 @@ public class listController extends HttpServlet {
 		
 	    String viewState = request.getParameter("viewState");
 
+	    session.setAttribute("name", "0000");
+	    
         if ("all".equals(viewState) && session != null) {
             session.removeAttribute("searchList");
         }
