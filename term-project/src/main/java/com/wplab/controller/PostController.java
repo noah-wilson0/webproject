@@ -59,7 +59,7 @@ public class PostController extends HttpServlet {
 		request.setAttribute("post", boardDO);
 		request.setAttribute("files", files);
         if(currentUserName.equals(boardDO.getWriter())
-        		||currentUser.getAuthority().equals("manager")){
+        		||currentUser.getAuthority().equals("admin")){
         	
         	RequestDispatcher view=request.getRequestDispatcher("WEB-INF/views/post.jsp");
         	view.forward(request, response);
