@@ -11,6 +11,8 @@ import java.util.List;
 
 import com.wplab.repository.BoardDAOImpl;
 import com.wplab.repository.BoardDAObyDBCP;
+import com.wplab.repository.FileDAOImpl;
+import com.wplab.repository.FileDAObyDBCP;
 import com.wplab.repository.UserDAOImpl;
 import com.wplab.repository.UserDAObyDBCP;
 import com.wplab.repository.UserDTO;
@@ -55,10 +57,12 @@ public class UserInfoManagementController extends HttpServlet {
 		String dbcpResourceName = super.getServletContext().getInitParameter("dbcp_resource_name");
 		UserDAOImpl dao=new UserDAObyDBCP(dbcpResourceName);
 		BoardDAOImpl boardDAO=new BoardDAObyDBCP(dbcpResourceName);
+		FileDAOImpl fdao = new FileDAObyDBCP(dbcpResourceName);
 		
 		UserDTO userDTO = new UserDTO();
 		userDTO.setId(id);
 		userDTO.setName(writer);
+		fdao.deleteMathWriterAll(userDTO);
 		boardDAO.deleteMathWriterAll(userDTO);
 		dao.delete(userDTO);
 		

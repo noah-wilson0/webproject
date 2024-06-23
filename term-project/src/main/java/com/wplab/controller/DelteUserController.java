@@ -6,6 +6,8 @@ import com.wplab.entity.UserDO;
 import com.wplab.repository.BoardDAOImpl;
 import com.wplab.repository.BoardDAObyDBCP;
 import com.wplab.repository.BoardDTO;
+import com.wplab.repository.FileDAOImpl;
+import com.wplab.repository.FileDAObyDBCP;
 import com.wplab.repository.UserDAOImpl;
 import com.wplab.repository.UserDAObyDBCP;
 import com.wplab.repository.UserDTO;
@@ -32,6 +34,7 @@ public class DelteUserController extends HttpServlet {
 		String dbcpResourceName = super.getServletContext().getInitParameter("dbcp_resource_name");
 		UserDAOImpl dao=new UserDAObyDBCP(dbcpResourceName);
 		BoardDAOImpl boardDAO=new BoardDAObyDBCP(dbcpResourceName);
+		FileDAOImpl fdao = new FileDAObyDBCP(dbcpResourceName);
 		HttpSession session=request.getSession(false);
 		
 		UserDO userDO=(UserDO) session.getAttribute("user");
@@ -44,9 +47,9 @@ public class DelteUserController extends HttpServlet {
 		System.out.print("id:"+id);
 		System.out.print("name:"+session.getAttribute("name"));
 		
-		
-		dao.delete(userDTO);
+		fdao.deleteMathWriterAll(userDTO);
 		boardDAO.deleteMathWriterAll(userDTO);
+		dao.delete(userDTO);
 		
 		response.sendRedirect("start");
 	}

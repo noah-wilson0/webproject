@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.wplab.reserve.service.SeatsDO;
 import com.wplab.service.DBconnectionInfo;
 
 public class FileDAOImpl implements FileDAO{
