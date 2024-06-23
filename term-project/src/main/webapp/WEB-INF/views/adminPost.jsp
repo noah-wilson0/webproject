@@ -64,6 +64,11 @@
          <tr><td class="header">내용</td></tr>
          <tr><td><textarea name="content" readonly="readonly">${post.content}</textarea></td></tr>
          <tr><td>
+         <tr><td class="header">첨부파일</td></tr>
+            <tr><td><a href="upload/${files[0].fileName}" download>${files[0].fileName}</a></td></tr>
+            <tr><td><a href="upload/${files[1].fileName}" download>${files[1].fileName}</a></td></tr>
+            <tr><td><a href="upload/${files[2].fileName}" download>${files[2].fileName}</a></td></tr>
+            <tr><td>
              <form action="list" method="get">
                  <input type="submit" value="목록">
              </form>
